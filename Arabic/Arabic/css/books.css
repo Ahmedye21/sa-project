@@ -1,0 +1,224 @@
+:root{
+   --main-color: #2196f3;
+    --main-color-alt: #1787e0;
+    --main-transition: 0.3s;
+    --main-padding-top: 100px;
+    --main-padding-bottom: 100px;
+    --section-background: #ececec;
+}
+a{
+    text-decoration: none;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+  
+    font-family: "open sans", sans-serif;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.container{ 
+    padding-left: 30px;
+    padding-right: 30px;
+     margin-left: auto;
+    margin-right: auto; 
+   
+}
+
+ @media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+/* Large */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+/* article starts */
+   .articles{
+      padding-top: var(--main-padding-top);
+      padding-bottom: var(--main-padding-bottom);
+   }
+   .one{
+    background-color: var(--section-background);
+   }
+   .pad{
+      padding-top: 0px;
+     
+   }
+  .articles  .container{
+           display: grid;
+           grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+           gap: 40px;
+           /* margin: 0 40px; */
+           position: relative;
+   }
+.articles h2{
+    font-size: 35px;
+}
+   .articles .cards{
+    
+    overflow: hidden;
+    border-radius: 3%;
+    box-shadow: 0 2px 15px #e9e6e6;
+    background-color: white;
+    transition: var(--main-transition);
+}
+
+.articles .cards:hover{
+    box-shadow: 0 2px 15px #494949;
+    transform: translateY(-10px);
+}
+
+.articles .cards .text{
+   text-align: center;
+}
+   
+
+
+.articles .cards p{
+    line-height: 1.5;
+    color: rgb(147 147 147);
+    max-width: 250px;
+}
+   .articles  .container img{
+    width: 100%;
+    max-width: 100%;
+   /* max-height: 40%;*/
+   }
+
+
+   .articles a{
+padding: 5px 10px;
+    display: block;
+    margin: 0 auto 15px;
+    border: 3px solid var(--main-color-alt);
+    width: fit-content;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.articles a{
+    background-color: white ;
+    color:var(--main-color-alt);
+}
+.articles a:hover{
+    background-color:var(--main-color-alt);
+    color:white;
+}
+
+.section {
+    font-weight: bold;
+    font-size: 40px;
+    width: fit-content;
+    margin: 50px auto ;
+   text-align: left;
+    /*position: relative;*/
+ 
+}
+/* article ends */
+
+
+/* start title */
+.main-header{
+    padding: 10px 20px;
+    width:fit-content;
+    text-align: center;
+   text-transform: uppercase;
+   /* background-color: transparent; */
+    margin: 0 auto 80px;
+    position: relative;
+    border: 2px solid black;
+    font-size: 30px;
+    transition: var(--main-transition) ;
+    transition-property:all;
+    z-index: 1;
+}
+.main-header::before,
+.main-header::after{
+   content: "";
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+.main-header::before{
+    left: -30px;
+}
+.main-header::after{
+    right: -30px;
+}
+
+.main-header:hover{
+   
+    border: 2px solid var(--main-color);
+    color: white;
+    transition-delay: .3s;
+}
+
+.main-header:hover::after
+{
+   z-index: -1;
+   animation: l-hover .5s linear forwards;
+   
+}
+.main-header:hover::before{
+   
+   z-index: -1;
+    animation: r-hover .5s linear forwards;
+}
+
+ @keyframes l-hover{
+    40%{
+    right: 0;
+      width: 12px;
+    height: 12px;} 
+   
+    70%{background-color: var(--main-color);
+    width: 70%; right: 0; 
+     height:100%;  border-radius:0%;
+    }
+
+     100%{background-color: var(--main-color);
+     width: 100%; right: 0;
+     height:100%;  border-radius:0%;
+    }
+} 
+
+@keyframes r-hover{
+       40%{
+    left: 0; width: 12px;
+    height: 12px; border-radius: 50%;}
+    
+     70%{background-color: var(--main-color);
+    width: 70%; left: 0; 
+     height:100%;  border-radius:0%;
+    }
+
+     100%{background-color: var(--main-color);
+     width: 100%; left: 0;
+     height:100%;  border-radius:0%;
+    }
+} 
+
+/* end title */

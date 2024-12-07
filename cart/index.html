@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="navbar">
+      <a href="../home-page/main.html" class="logo">
+        <img
+          src="../home-page/images/logo.png"
+          width="100"
+          class="image"
+          alt=""
+      /></a>
+      <div class="nav-links">
+        <ul>
+          <li class="Home"><a href="../home-page/main.html">Home</a></li>
+          <li><a href="#">Categories
+            <ul>
+              <li><a href="/SA- PROJECT/book project/book project/project__book.html">English</a></li>
+              <li><a href="../SA-mariem sayed/Arabic/index.html">Arabic</a></li>
+            </ul>
+          </a></li>
+          <li><a href="../contact us/index.html">Contact us </a></li>
+          <li><a href="/SA- PROJECT/cart/index.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+          <hr />
+          <li>
+            <a href="../login/index.html"
+              ><button class="btn">Sign in</button></a
+            >
+          </li>
+        </ul>
+      </div>
+      <img
+        src="../home-page/images/menu-btn.png"
+        alt="menu hamburger"
+        class="menu-hamburger"
+      />
+    </nav>
+
+    <header>
+      <div class="container">
+        <h1>Your Cart</h1>
+        <div id="cart-items" class="cart-container"></div>
+        <div class="cart-summary">
+          <h3>Total: <span id="total-price">0</span> LE</h3>
+          <button id="clear-cart" class="btn">Clear Cart</button>
+          <button id="buy-btn" class="btn">Buy</button>
+        </div>
+        <div id="payment-form" class="payment-form" style="display:none;">
+          <h2>Enter Payment Details</h2>
+          <input type="text" id="card-number" placeholder="Card Number" required /><br />
+          <input type="text" id="expiry-date" placeholder="Expiry Date" required /><br />
+          <input type="text" id="cvv" placeholder="CVV" required /><br />
+          <button id="submit-payment" class="btn">Submit</button>
+        </div>
+        <div id="order-status" class="order-status" style="display:none;">
+          <h2>Done Order</h2>
+        </div>
+      </div>
+    </header>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      const cartItemsContainer = document.getElementById("cart-items");
+      const totalPriceElement = document.getElementById("total-price");
+      const clearCartButton = document.getElementById("clear-cart");
+      const buyButton = document.getElementById("buy-btn");
+      const paymentForm = document.getElementById("payment-form");
+      const orderStatus = document.getElementById("order-status");
+      const submitPaymentButton = document.getElementById("submit-payment");
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      function updateCartUI() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        } else {
+          cart.forEach((item) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("cart-item");
+            itemDiv.innerHTML = `
+              <img src="${item.image}" alt="${item.name}" class="cart-image" />
+              <div class="cart-details">
+                <h3>${item.name}</h3>
+                <p>Price: ${item.price} LE</p>
+              </div>
+              <button class="remove-item" data-id="${item.id}">Remove</button>
+            `;
+            cartItemsContainer.appendChild(itemDiv);
+            total += parseFloat(item.price);
+          });
+        }
+
+        totalPriceElement.textContent = total.toFixed(2);
+      }
+
+      clearCartButton.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        location.reload();
+      });
+
+      buyButton.addEventListener("click", () => {
+        paymentForm.style.display = "block";
+      });
+
+      submitPaymentButton.addEventListener("click", () => {
+        // Here you can handle payment processing logic
+        // For now, we'll just simulate a successful payment
+
+        // Clear the cart after payment
+        localStorage.removeItem("cart");
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        totalPriceElement.textContent = "0";
+        
+        // Show order confirmation message
+        paymentForm.style.display = "none";
+        orderStatus.style.display = "block";
+      });
+
+      cartItemsContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-item")) {
+          const itemId = e.target.dataset.id;
+          const updatedCart = cart.filter((item) => item.id !== itemId);
+          localStorage.setItem("cart", JSON.stringify(updatedCart));
+          location.reload();
+        }
+      });
+
+      updateCartUI();
+    </script>
+</body>
+</html>
