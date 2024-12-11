@@ -23,24 +23,20 @@
         <a href="main.html" class="logo">    <img src="./images/logo.png" width="100" class="image" alt=""></a>
         <div class="nav-links">
             <ul>
+
                 <li class="Home"><a href="main.html">Home</a></li>
-                <li><a href="#">Categories
-                    <ul>
-                        <li><a href="../book project/book project/project__book.html">English</a></li>
-                        <li><a href="../SA-mariem sayed/Arabic/index.html">Arabic</a></li>
-                    </ul>
-                </a></li>
                 <li><a href="../contact us/index.html">Contact us </a></li>
-                <li><a href="/SA- PROJECT/cart/index.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="../cart/index.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <hr>
                 <li><a href="../login/index.html"><button class="btn">Sign in</button></a> </li>
-            </ul>
+                <div class="search-container">
+                  <input type="text" id="search-bar" placeholder="Search for books...">
+                </div>
+              </ul>
         </div>
         <img src="../home-page/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
     </nav>
-    <header>
-        <h1 class="h1-head">English Corner :</h1>
-        
+    <header>        
    <!--novels-->
    <div class="articles">
     <h2 class="main-header">
@@ -245,7 +241,25 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+<style>
 
+#search-bar {
+    width: 70%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#search-bar:focus {
+    border-color: #007bff;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+</style>
 <script>
     document.querySelectorAll(".add-to-cart").forEach((button) => {
       button.addEventListener("click", () => {
@@ -277,5 +291,6 @@
 
         menuhamburger.addEventListener('click',()=>        
      {navlinks.classList.toggle('mobile-menu')})
+
 </script>
 </html>
